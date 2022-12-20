@@ -1,0 +1,16 @@
+import System.IO
+
+main = do 
+    t<- getLine
+    num <- getLine
+    let s = readInt ([num!!0])
+    print (res (tail num) s "")
+
+readInt::String->Int 
+readInt = read
+
+res [] sum str = reverse str
+res (c:num) sum str
+    |c=='0' = res num sum ('+':str)
+    |c=='1' &&sum==1 = res num (sum-1) ('-':str)
+    |otherwise = res num (sum+1) ('+':str)
